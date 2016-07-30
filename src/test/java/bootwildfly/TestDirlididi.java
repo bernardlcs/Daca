@@ -34,58 +34,95 @@ public class TestDirlididi {
 		given()
 	      .then().get("admnistradores");
 		given()
-	      .then().statusLine("200");
+	      .then().statusCode(200);
+		given()
+		   .then().body("status", is("success"));
 		
 		given()
 	      .when().get("/user/login");
 		given()
 		   .then().get("login do usuario");
+		given()
+	      .then().statusCode(200);
+		given()
+		   .then().body("status", is("success"));
+	
 		
 		given()
-	      .when().post("/usuarios/cadastro?name=bernard");
+	      .when().post("/userCadastro/?name=bernard$email=email&senha=senha");
 		given()
-		   .then().get("epaa");
+		   .then().get("conta criada com sucesso");
+		given()
+	      .then().statusCode(201);
+		given()
+		   .then().body("status", is("success"));
 		
-		given()
-	      .when().get("/admin/cadastro?name=bernard");
-		given()
-		   .then().get("bernard");
+		
 		
 		given()
 	      .when().get("/usuarios");
 		given()
 		   .then().get("usuarios");
+		given()
+		    .then().statusCode(200);
+		given()
+		   .then().body("status", is("success"));
 		
 		given()
 	      .when().post("/problemas/problemaID/submit");
 		given()
-		   .then().get("bsubmetendo uma solucao");	
+		   .then().get("submetendo uma solucao");
+		given()
+	      .then().statusCode(201);
+		given()
+		   .then().body("status", is("success"));
+		
 		
 		given()
 	      .when().post("/problemas/problemaID/edit");
 		given()
 		   .then().get("editando uma solucao");
+		given()
+	      .then().statusCode(201);
+		given()
+		   .then().body("status", is("success"));
 		
 		given()
 	      .when().get("/problemas/problemaID");
 		given()
 		   .then().get("mostra detalhes do problema escolhido");
+		given()
+	      .then().statusCode(200);
+		given()
+		   .then().body("status", is("success"));
 		
 		given()
 	      .when().post("/problemas/create");
 		given()
 		   .then().get("tela de criar um problema");
+		given()
+	      .then().statusCode(201);
+		given()
+		   .then().body("status", is("success"));
 		
 		given()
 	      .when().get("/problemas");
 		given()
 		   .then().get("deve mostra uma tela cheio de problemas");
+		given()
+	      .then().statusCode(200);
+		given()
+		   .then().body("status", is("success"));
 		
 		
 		given()
 	      .when().get("/home");
 		given()
 		   .then().get("Bem vindo!!");
+		given()
+	      .then().statusCode(200);
+		given()
+		   .then().body("status", is("success"));
 		
 		
 	}
